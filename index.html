@@ -1,5 +1,8 @@
 <html>
-
+<?php
+session_start(); //Starts a session
+require('connect_db.php'); //Connects to database
+?>
 <head>
 <link rel="stylesheet" href="style/format.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,8 +15,20 @@
 		<li><a href="#">News</a></li>
 		<li><a href="#">Game Reports</a></li>
 		<li><a href="#">Contact</a></li>
-    <li style="float:right"><a href="#signUp">Sign Up</a></li>
-    <li style="float:right"><a href="#login">Login</a></li>
+    <?php
+    if(!isset($_SESSION['user_id'])) //If the user isn't logged in do this
+    {
+      echo '<li style="float:right"><a href="#signUp">Sign Up</a></li>
+      <li style="float:right"><a href="#login">Login</a></li>'; //Shows the login and sign up link
+    }
+    else //If the user is logged in do this
+    {
+
+    require('yam_validation.php'); //Runs code in yam_validation.php file
+
+    }
+    ?></div>
+
   </ul>
 </head>
 
@@ -21,7 +36,7 @@
 
 <hr>
 
-  <div class="intro"> Whimsical Yam Home Page! </div>
+
 
 
 </body></html>
